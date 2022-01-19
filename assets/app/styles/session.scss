@@ -1,0 +1,22 @@
+#session {
+  @include flexbox();
+  @include flex-direction(row);
+  height: calc(100vh - 55px);
+
+  .explorer {
+    @include flexbox();
+    @include flex-direction(column);
+    height: 100%;
+    background-color: $color-background;
+    width: 240px;
+
+    .folders {
+      flex-grow: 1;
+    }
+
+    .actions {
+      margin-bottom: 30px;
+      padding: 0 4px;
+    }
+  }
+}
