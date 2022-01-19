@@ -1,4 +1,4 @@
-defmodule CCWeb.PageController do
+defmodule CCWeb.IndexController do
   use CCWeb, :controller
 
   def index(conn, _params) do

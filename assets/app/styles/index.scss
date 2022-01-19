@@ -1,0 +1,15 @@
+#index {
+  @include flexbox();
+  @include flex-direction(column);
+
+  .start {
+    flex-grow: 1;
+  }
+
+  footer {
+    @include flexbox();
+    @include justify-content(center);
+    @include align-items(center);
+    background-color: $color-background-dark;
+  }
+}
