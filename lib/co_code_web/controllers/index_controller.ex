@@ -6,7 +6,7 @@ defmodule CCWeb.IndexController do
   end
 
   def new(conn, _params) do
-    IO.puts("OK OK NEW")
-    render(conn, "index.html")
+    {:ok, %CC.Editor.Sessions{id: id}} = CC.Editor.create_session()
+    conn |> redirect(to: "/#{id}")
   end
 end

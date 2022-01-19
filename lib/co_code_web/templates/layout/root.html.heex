@@ -21,10 +21,24 @@
             <img src={Routes.static_path(@conn, "/images/logo.png")} alt="CoCode" |>
             <h1>CoCode</h1>
         </div>
+        <%= if Map.has_key?(@conn.assigns, :session) do %>
         <nav>
+        <button class="share" title="Copy URL" onclick="copyUrl();">
+        <%= icon "share" %>
+        </button>
         </nav>
+        <% end %>
       </section>
     </header>
     <%= @inner_content %>
+    <div id="cc-notif-container">
+    </div>
   </body>
 </html>
+
+<script>
+function copyUrl() {
+    navigator.clipboard.writeText(window.APP.session.getUrl());
+    window.APP.notif.info('URL copied to clipboard.');
+}
+</script>

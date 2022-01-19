@@ -19,6 +19,7 @@ defmodule CCWeb.Router do
 
     get "/", IndexController, :index
     get "/new", IndexController, :new
+    live "/:id", SessionLive.Index, :index
   end
 
   if Mix.env() in [:dev, :test] do
