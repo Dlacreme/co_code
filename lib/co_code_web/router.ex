@@ -18,6 +18,7 @@ defmodule CCWeb.Router do
     pipe_through :browser
 
     get "/", IndexController, :index
+    get "/new", IndexController, :new
   end
 
   if Mix.env() in [:dev, :test] do

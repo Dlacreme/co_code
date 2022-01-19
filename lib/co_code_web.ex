@@ -94,6 +94,7 @@ defmodule CCWeb do
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
+      import CCWeb.HTMLHelpers
 
       import CCWeb.ErrorHelpers
       import CCWeb.Gettext

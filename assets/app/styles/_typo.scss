@@ -2,3 +2,9 @@ a {
   color: $color-main;
   font-weight: bold;
 }
+
+a.no-style {
+  color: $color-font;
+  font-weight: 400;
+  text-decoration: none;
+}
