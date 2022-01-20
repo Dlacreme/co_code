@@ -4,7 +4,6 @@ defmodule CCWeb.SessionLive.Index do
   @impl true
   def mount(%{"id" => id}, _session, socket) do
     try do
-      IO.puts("SESSION> #{inspect(CC.Storage.get(id))}")
       {:ok, assign(socket, session: CC.Storage.get(id))}
     rescue
       _e ->

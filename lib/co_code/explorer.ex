@@ -12,7 +12,12 @@ defmodule CC.Explorer do
   def get_root() do
     %Item{
       pathname: "/",
-      filename: "/"
+      filename: "/",
+      type: :folder
     }
   end
+
+  @doc """
+  Push a new node
+  """
 end

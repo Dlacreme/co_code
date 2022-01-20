@@ -25,7 +25,7 @@ defmodule SessionLive.ExplorerComponent do
   def render(assigns) do
     ~H"""
     <section class="explorer">
-    <%= render_folder(assigns, "Explorer") %>
+    <%= render_node(assigns, @session.explorer) %>
     <div class="folders">
     </div>
     <div class="actions">
@@ -35,12 +35,27 @@ defmodule SessionLive.ExplorerComponent do
     """
   end
 
-  def render_folder(assigns, label) do
+  def render_node(assigns, %CC.Explorer.Item{type: :file} = node) do
+    ~H"""
+    <div class="item file">
+    <span><%= node.filename %></span>
+    </div>
+    """
+  end
+
+  def render_node(assigns, %CC.Explorer.Item{type: :folder} = node) do
     ~H"""
     <div class="item folder">
-    <span><%= label %></span>
+    <span><%= node.filename %></span>
     <button title="Add file" phx-click={show_new_modal("file")} ><%= HTMLHelpers.icon("description") %></button>
     <button title="Add folder" phx-click={show_new_modal("folder")} ><%= HTMLHelpers.icon("folder") %></button>
+    <%= if node.children && length(node.children) > 0 do %>
+    <div class="children">
+    <%= for n <- node.children do %>
+    <%= render_node(assigns, n) %>
+    <% end %>
+    </div>
+    <% end %>
     </div>
     """
   end
