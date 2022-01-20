@@ -15,13 +15,11 @@ defmodule CC.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: CC.PubSub},
       # Start the Endpoint (http/https)
-      CCWeb.Endpoint
-      # Start a worker by calling: CC.Worker.start_link(arg)
-      # {CC.Worker, arg}
+      CCWeb.Endpoint,
+      # Start our storage supervisor
+      CC.Storage.Supervisor
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: CC.Supervisor]
     Supervisor.start_link(children, opts)
   end

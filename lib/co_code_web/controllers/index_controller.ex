@@ -7,6 +7,8 @@ defmodule CCWeb.IndexController do
 
   def new(conn, _params) do
     {:ok, %CC.Editor.Sessions{id: id}} = CC.Editor.create_session()
+    {:ok, store} = CC.Storage.create(id)
+    IO.puts("STORE > #{inspect(store)}")
     conn |> redirect(to: "/#{id}")
   end
 end

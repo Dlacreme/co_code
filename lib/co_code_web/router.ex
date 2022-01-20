@@ -19,7 +19,6 @@ defmodule CCWeb.Router do
 
     get "/", IndexController, :index
     get "/new", IndexController, :new
-    live "/:id", SessionLive.Index, :index
   end
 
   if Mix.env() in [:dev, :test] do
@@ -38,5 +37,11 @@ defmodule CCWeb.Router do
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  # Since it is a wildcard - keep it at the end
+  scope "/", CCWeb do
+    pipe_through :browser
+    live "/:id", SessionLive.Index, :index
   end
 end
