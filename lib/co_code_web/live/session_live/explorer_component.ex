@@ -7,6 +7,21 @@ defmodule SessionLive.ExplorerComponent do
 
   @modal_id "explorer-new"
 
+  @impl true
+  def handle_event(
+        "explorer_new",
+        %{
+          "type" => type,
+          "parent" => parent_pathname,
+          "filename" => filename
+        },
+        socket
+      ) do
+    IO.puts("ADD #{filename} TYPE #{type} TO #{parent_pathname}")
+    {:noreply, socket}
+  end
+
+  @impl true
   def render(assigns) do
     ~H"""
     <section class="explorer">
@@ -59,7 +74,7 @@ defmodule SessionLive.ExplorerComponent do
     <h3 class="flex-grow">Create</h3>
       	<button class="phx-modal-close" phx-click={hide_new_modal()}>✖</button>
     </div>
-    <form class="row" phx-submit="explorer_new">
+    <form class="row" phx-submit="explorer_new" phx-target={@myself}>
     <input type="hidden" name="type" value="file" id={"#{modal_id}-input-type"} />
     <input type="hidden" name="parent" value="" id={"#{modal_id}-input-parent"} />
     <input type="text" name="filename" class="flex-grow" required />

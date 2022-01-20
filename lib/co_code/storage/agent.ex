@@ -6,10 +6,11 @@ defmodule CC.Storage.Agent do
   alias CC.Storage.Store
 
   def start_link(store = %Store{}) do
+    IO.puts("HELLOOOOOOOOOOOOOOOOO")
     Agent.start_link(fn -> store end, name: get_process_name(store.id))
   end
 
-  defp get_process_name(id) do
+  def get_process_name(id) do
     "#{__MODULE__}_#{id}"
   end
 end
